@@ -19,4 +19,9 @@ class Specialist extends Model
     {
         return $this->belongsToMany(Service::class);
     }
+
+    public function addService(Service $service): void
+    {
+        $this->services()->attach($service);
+    }
 }
