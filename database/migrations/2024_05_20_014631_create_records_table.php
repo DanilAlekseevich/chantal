@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('records', function (Blueprint $table) {
             $table->id();
+            $table->date('time');
+            $table->unsignedInteger('service_id');
+            $table->unsignedInteger('client_id');
+            $table->unsignedInteger('specialist_id');
             $table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('specialist_id')->references('id')->on('specialists')->onDelete('cascade');
         });
     }
 
